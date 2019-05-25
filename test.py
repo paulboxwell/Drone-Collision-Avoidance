@@ -1,6 +1,6 @@
-print("Hello Everyone \nI am hoping to learn all about Git, GitHub and Visual Studio Code.")
-while(True):
-    
-    name = input("What is your name?")
-    print("Nice to meet you " + name)
-    print("changed code")
+output = ""
+for i in range(0,10):
+    for j in range(0,i+1):
+        output += " * "
+    output += "\n"
+print(output)
