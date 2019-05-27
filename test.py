@@ -41,29 +41,43 @@ def Print_Arena(Arena):
     output += "-+"
     print(output)
 
+
+
+def Random_Route(Route):
+    end = False
+    while(end == False):
+        most_resent = Route[len(Route)-1]
+
+        x = 0
+        y = 0
+
+        if most_resent[0] == 9 and most_resent[1] == 9:
+            end = True
+        else:
+            if most_resent[0] != 9 and random.random() > 0.5:
+                x = 1
+            if most_resent[1] != 9 and random.random() > 0.5:
+                y = 1
+            Route.append((most_resent[0] + x,most_resent[1] + y))
+    return len(Route)
+
 #Define Route
 
-Route = [(0,0)] # (x,y)
+FirstRoute = [(0,0)] # (x,y)
+CurrentBestLenght = Random_Route(FirstRoute)
+CurrentBestRoute = FirstRoute
 
 
-    
+while(True):
+    Route = [(0,0)] # (x,y)
+    newlength = Random_Route(Route)
+    if newlength < CurrentBestLenght:
+        CurrentBestLenght = newlength
+        CurrentBestRoute = Route
 
-end = False
-while(end == False):
-    input("\nEnter for next frame")
-    most_resent = Route[len(Route)-1]
-    if most_resent[0] == 9 and most_resent[1] == 9:
-        end = True
-    elif most_resent[0] == 9:
-        Route.append((most_resent[0],most_resent[1]+1))
-    elif most_resent[1] == 9:
-        Route.append((most_resent[0] + 1,most_resent[1]))
-    elif random.random() > 0.5:
-        Route.append((most_resent[0],most_resent[1] + 1))
-    else:
-        Route.append((most_resent[0] + 1,most_resent[1]))
+
     Arena = Initialise_Arena(10)
-    Add_Route_To_Arena(Route, Arena)
+    Add_Route_To_Arena(CurrentBestRoute, Arena)
     Print_Arena(Arena)
-print("Made it to the end in:" + str(len(Route)))
-input()
+
+    input()
