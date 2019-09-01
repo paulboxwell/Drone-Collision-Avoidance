@@ -67,6 +67,7 @@ FirstRoute = [(0,0)] # (x,y)
 CurrentBestLenght = Random_Route(FirstRoute)
 CurrentBestRoute = FirstRoute
 
+print("NEW COMMIT")
 
 while(True):
     Route = [(0,0)] # (x,y)
